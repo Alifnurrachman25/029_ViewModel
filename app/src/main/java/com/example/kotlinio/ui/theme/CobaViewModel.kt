@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.sql.ClientInfoStatus
 
 class CobaViewModel: ViewModel() {
     var namaUsr : String by mutableStateOf("")
@@ -28,5 +29,9 @@ class CobaViewModel: ViewModel() {
     }
     fun setJK(pilihJK:String){
         _uiState.update { currenState -> currenState.copy(sex= pilihJK)}
+    }
+
+    fun setStatus(pilihStatus:String){
+        _uiState.update { currenState -> currenState.copy(sex= pilihStatus)}
     }
 }

@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlinio.Data.DataForm
 import com.example.kotlinio.Data.DataSource.jenis
+import com.example.kotlinio.Data.DataSource.status
 import com.example.kotlinio.ui.theme.KotlinIOTheme
 
 class MainActivity : ComponentActivity() {
@@ -140,7 +141,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         shape = MaterialTheme.shapes.large,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp,0.dp),
+            .padding(10.dp, 0.dp),
         placeholder = { Text(text = "Masukkan username anda")}
     )
     OutlinedTextField(
@@ -152,7 +153,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         label = { Text(text = "Telepon")},
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp,0.dp),
+            .padding(10.dp, 0.dp),
         placeholder = { Text(text = "Masukkan nomor telpon anda")}
     )
     OutlinedTextField(
@@ -164,7 +165,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         label = { Text(text = "Email")},
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp,0.dp),
+            .padding(10.dp, 0.dp),
         placeholder = { Text(text = "Masukkan email anda")}
     )
     OutlinedTextField(
@@ -175,12 +176,25 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         shape = MaterialTheme.shapes.large,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp,0.dp),
+            .padding(10.dp, 0.dp),
         placeholder = { Text(text = "Masukkan alamat anda")}
+    )
+    Text(text = "Jenis Kelamin : ",
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp,5.dp)
     )
     SelectJK(
         options = jenis.map{ id -> context.resources.getString(id)},
         onSelectedChanged = {cobaViewModel.setJK(it)})
+    Text(text = "Status : ",
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp,5.dp)
+    )
+    SelectStatus(
+        options = status.map{ id -> context.resources.getString(id)},
+        onSelectedChanged = {cobaViewModel.setStatus(it)})
     Button(modifier = Modifier.fillMaxWidth(),
         onClick = {cobaViewModel.BacaData(textNama,texttlp,dataForm.sex,textAlamat)
         }
@@ -189,7 +203,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             fontSize = 16.sp)
 
     }
-    Spacer(modifier = Modifier.height(150.dp))
+    Spacer(modifier = Modifier.height(10.dp))
     TextHasil(
         namanya = cobaViewModel.namaUsr,
         telponnya =cobaViewModel.noTlp ,
@@ -229,7 +243,40 @@ fun SelectJK(
 
     var selectedValue by rememberSaveable { mutableStateOf("")
     }
-    Column (modifier = Modifier.padding(16.dp)) {
+    Row (modifier = Modifier.padding(5.dp)) {
+        options.forEach { item ->
+            Row (
+                modifier = Modifier.selectable(
+                    selected = selectedValue == item,
+                    onClick = {
+                        selectedValue = item
+                        onSelectedChanged(item)
+                    }
+                ),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                RadioButton(
+                    selected = selectedValue == item,
+                    onClick = {
+                        selectedValue = item
+                        onSelectedChanged(item)
+                    }
+                )
+                Text(item)
+            }
+        }
+    }
+
+}
+
+@Composable
+fun SelectStatus(
+    options: List<String>,
+    onSelectedChanged: (String) -> Unit = {}) {
+
+    var selectedValue by rememberSaveable { mutableStateOf("")
+    }
+    Row (modifier = Modifier.padding(5.dp)) {
         options.forEach { item ->
             Row (
                 modifier = Modifier.selectable(
