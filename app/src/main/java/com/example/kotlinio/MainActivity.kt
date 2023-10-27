@@ -168,17 +168,6 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             .padding(10.dp, 0.dp),
         placeholder = { Text(text = "Masukkan email anda")}
     )
-    OutlinedTextField(
-        value = textAlamat,
-        onValueChange = {textAlamat = it},
-        label = { Text(text = "Alamat")},
-        singleLine = true,
-        shape = MaterialTheme.shapes.large,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp, 0.dp),
-        placeholder = { Text(text = "Masukkan alamat anda")}
-    )
     Text(text = "Jenis Kelamin : ",
         modifier = Modifier
             .fillMaxWidth()
@@ -195,6 +184,17 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     SelectStatus(
         options = status.map{ id -> context.resources.getString(id)},
         onSelectedChanged = {cobaViewModel.setStatus(it)})
+    OutlinedTextField(
+        value = textAlamat,
+        onValueChange = {textAlamat = it},
+        label = { Text(text = "Alamat")},
+        singleLine = true,
+        shape = MaterialTheme.shapes.large,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp, 0.dp),
+        placeholder = { Text(text = "Masukkan alamat anda")}
+    )
     Button(modifier = Modifier.fillMaxWidth(),
         onClick = {cobaViewModel.BacaData(textNama,texttlp,dataForm.sex,textAlamat)
         }
