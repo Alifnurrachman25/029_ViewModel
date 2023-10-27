@@ -73,7 +73,7 @@ fun TampilLayout(modifier: Modifier = Modifier){
         elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(2.dp)
         ) {
             TampilForm()
         }
@@ -93,6 +93,9 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         mutableStateOf("")
     }
     var textAlamat by remember {
+        mutableStateOf("")
+    }
+    var textEmail by remember {
         mutableStateOf("")
     }
 
@@ -126,19 +129,19 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         fontSize = 20.sp,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 5.dp)
+            .padding(bottom = 10.dp)
         )
 
     OutlinedTextField(
         value = textNama,
         onValueChange = {textNama = it},
-        label = { Text(text = "Nama Lengkap")},
+        label = { Text(text = "Username")},
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
-        placeholder = { Text(text = "Masukkan nama anda")}
+            .padding(10.dp,0.dp),
+        placeholder = { Text(text = "Masukkan username anda")}
     )
     OutlinedTextField(
         value = texttlp,
@@ -146,11 +149,23 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         shape = MaterialTheme.shapes.large,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         onValueChange = {texttlp = it},
-        label = { Text(text = "Nomor telpon")},
+        label = { Text(text = "Telepon")},
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(10.dp,0.dp),
         placeholder = { Text(text = "Masukkan nomor telpon anda")}
+    )
+    OutlinedTextField(
+        value = textEmail,
+        singleLine = true,
+        shape = MaterialTheme.shapes.large,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+        onValueChange = {textEmail = it},
+        label = { Text(text = "Email")},
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp,0.dp),
+        placeholder = { Text(text = "Masukkan email anda")}
     )
     OutlinedTextField(
         value = textAlamat,
@@ -160,7 +175,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         shape = MaterialTheme.shapes.large,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(10.dp,0.dp),
         placeholder = { Text(text = "Masukkan alamat anda")}
     )
     SelectJK(
