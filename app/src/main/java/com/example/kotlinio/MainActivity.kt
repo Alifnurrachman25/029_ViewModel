@@ -19,6 +19,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -124,6 +125,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             )
         }
     }
+    Divider()
     Text(text = "Create Your Account",
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.Bold,
@@ -171,7 +173,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     Text(text = "Jenis Kelamin : ",
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp,5.dp)
+            .padding(10.dp, 5.dp)
     )
     SelectJK(
         options = jenis.map{ id -> context.resources.getString(id)},
@@ -179,7 +181,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     Text(text = "Status : ",
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp,5.dp)
+            .padding(10.dp, 5.dp)
     )
     SelectStatus(
         options = status.map{ id -> context.resources.getString(id)},
